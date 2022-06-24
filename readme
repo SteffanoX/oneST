@@ -1,0 +1,12 @@
+- The Assignment is completed using react js
+
+- basic react packages used, dependencies can be found in package.json
+   - run 'npm i --save react-select' for installation of react-select
+
+- run npm start within this folder, web-app should pop out, else visit http://localhost:3000/
+
+- Single page app, toggles between check uen and check weather, able to show both at the same time, stateful. 
+
+- some assumptions made:
+  - yyyy / s/t yy portion of UEN number assumed to be in range 1965 - browser year (current year).
+  
