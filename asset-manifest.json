@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/SteffanoX/oneST.git/static/css/main.80942ded.css",
+    "main.js": "/SteffanoX/oneST.git/static/js/main.1f57f44e.js",
+    "static/js/787.772d195a.chunk.js": "/SteffanoX/oneST.git/static/js/787.772d195a.chunk.js",
+    "index.html": "/SteffanoX/oneST.git/index.html",
+    "main.80942ded.css.map": "/SteffanoX/oneST.git/static/css/main.80942ded.css.map",
+    "main.1f57f44e.js.map": "/SteffanoX/oneST.git/static/js/main.1f57f44e.js.map",
+    "787.772d195a.chunk.js.map": "/SteffanoX/oneST.git/static/js/787.772d195a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.80942ded.css",
+    "static/js/main.1f57f44e.js"
+  ]
+}
