@@ -4,6 +4,49 @@ const ValidateUEN = () => {
   const [uen, setUen] = useState('')
   const [vResults, setVResult] = useState('')
   const [ResultsCol, setResultCol] = useState('black')
+
+  const entityType = {
+    'LP': 'Limited Partnership',
+    'LL': 'Limited Liability Partnerships',
+    'FC': 'Foreign Companies',
+    'PF': 'Public Accounting Firms',
+    'RF': 'Representative Offices',
+    'MQ': 'Mosques',
+    'MM': 'Madrasahs',
+    'NB': 'News Bureaus',
+    'CC': 'Charities and Institutions of a Public Character',
+    'CS': 'Cooperative Societies',
+    'MB': 'Mutual Benefit Organisations',
+    'FM': 'Foreign Military Units',
+    'GS': 'Government and Government-Aided Schools',
+    'DP': 'High Commissions, Embassies',
+    'CP': 'Consulate',
+    'NR': 'International Organisations (registered with MFA)',
+    'CM': 'Medical Clinic',
+    'CD': 'Dental Clinic',
+    'MD': 'Medical and Dental Clinic',
+    'HS': 'Hospitals',
+    'VH': 'Voluntary Welfare Home',
+    'CH': 'Commercial Home',
+    'MH': 'Maternity Home',
+    'CL': 'Clinical Laboratory',
+    'XL': 'Xray Laboratory',
+    'CX': 'Both Clinical and Xray Laboratory',
+    'HC': 'Healthcare Service Providers',
+    'RP': 'Foreign Law Practice Representative Offices',
+    'TU': 'Trade Unions',
+    'TC': 'Town Councils',
+    'FB': 'Bank Representative Offices',
+    'FN': 'Insurance Representative Offices',
+    'PA': 'PA Services',
+    'PB': 'Grassroot Units',
+    'SS': 'Societies',
+    'MC': 'Management Corporations',
+    'SM': 'Subsidiary Management Corporations',
+    'GA': 'Organs of State, Ministries and Departments',
+    'GB': 'Statutory Boards and bodies performing public duties'
+
+  }
   
   const onSubmit = (e) =>{
     e.preventDefault()
@@ -26,7 +69,8 @@ const ValidateUEN = () => {
         if (uen.charAt(0).toLowerCase() === 's' || 
             uen.charAt(0).toLowerCase() === 't'){
                 if(NewUEN()){
-                    setVResult('This the new UEN format issued to all other entities')
+                    const enCode = uen.slice(3,5).toUpperCase()
+                    setVResult('This the new UEN format issued to: ' + entityType[enCode])
                     setResultCol('green')
                 }else{
                     setVResult('This is not a Valid UEN Format')
@@ -52,7 +96,7 @@ const ValidateUEN = () => {
   //Check Case A. Businesses Registered with ACRA
   const BuissACRA = () => {
     for(var i=0; i<(uen.length-1); i++ ){
-        if (!Number(uen.charAt(i))) return false;
+        if (isNaN(uen.charAt(i))) return false;
     }
     if(!/^[a-zA-Z]+$/.test(uen.charAt((uen.length) - 1))) return false;
     return true;
@@ -65,7 +109,7 @@ const ValidateUEN = () => {
     if((year > this_year) || (year < 1965) || (!year)) return false
 
     for(var i=4; i<(uen.length-1); i++){
-        if (!Number(uen.charAt(i))) return false;
+        if (isNaN(uen.charAt(i))) return false;
     }
     if(!/^[a-zA-Z]+$/.test(uen.charAt((uen.length) - 1))) return false;
     return true;
@@ -75,9 +119,11 @@ const ValidateUEN = () => {
   const NewUEN = () => {
     const this_year = parseInt(new Date().getFullYear());
     const year = uen.charAt(0).toLowerCase() === 't' ? parseInt('20'+uen.slice(1,3)):parseInt('19'+uen.slice(1,3))
+    const entityCode = uen.slice(3,5).toUpperCase()
+    if(!entityType[entityCode]) return false
     if((year > this_year) || (year < 1965) || (!year)) return false
-    for(var i=3; i<(uen.length-1); i++){
-        if (!Number(uen.charAt(i))) return false;
+    for(var i=5; i<(uen.length-1); i++){
+        if (isNaN(uen.charAt(i))) return false;
     }
     if(!/^[a-zA-Z]+$/.test(uen.charAt((uen.length) - 1))) return false;
     return true;
